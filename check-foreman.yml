@@ -1,0 +1,14 @@
+---
+- name: Check Foreman is running
+  hosts: all
+  sources:
+    - ansible.eda.url_check:
+        urls:
+          - https://foreman.jamdoog.gra
+        delay: 10
+  rules:
+    - name: Restart Nginx
+      condition: event.url_check.status == "down"
+      action:
+        run_playbook:
+          name: foreman/restart.yml

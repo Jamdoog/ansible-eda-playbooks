@@ -1,0 +1,7 @@
+---
+- name: Restart foreman
+  hosts: all
+  become: true
+  tasks:
+  - name: Restart foreman
+    shell: foreman-installer
