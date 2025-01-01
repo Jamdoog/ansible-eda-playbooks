@@ -7,8 +7,10 @@
           - https://foreman.jamdoog.gra
         delay: 10
   rules:
-    - name: Restart Nginx
+    - name: Restart Foreman
       condition: event.url_check.status == "down"
       action:
-        run_playbook:
-          name: foremanrestart.yml
+        run_job_template:
+          name: Foreman Restart
+          Organization: JamesGravelines
+          
