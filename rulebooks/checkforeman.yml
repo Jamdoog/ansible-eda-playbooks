@@ -12,4 +12,4 @@
       action:
         run_job_template:
           name: Foreman Restart Gravelines
-          Organization: JamesGravelines
+          organization: JamesGravelines
