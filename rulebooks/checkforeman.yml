@@ -11,6 +11,5 @@
       condition: event.url_check.status == "down"
       action:
         run_job_template:
-          name: Foreman Restart
+          name: Foreman Restart Gravelines
           Organization: JamesGravelines
-          
