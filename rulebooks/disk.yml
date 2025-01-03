@@ -12,6 +12,6 @@
         run_job_template:
           name: Clear /var/log
           organization: JamesGravelines
-          extra_vars:
+          job_args:
             TARGET_HOST: "{{ event.payload.data.series[0].tags.host }}"
           

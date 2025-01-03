@@ -3,6 +3,10 @@
   hosts: all
   become: true
   tasks:
+    - name: Show ansible_eda
+      debug:
+        var: ansible_eda
+
     - name: Find all files that are compressed over 7 days
       find:
         paths: /var/log
