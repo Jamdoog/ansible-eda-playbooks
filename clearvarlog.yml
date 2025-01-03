@@ -10,9 +10,11 @@
         patterns: "*.tar.gz,*.old"
         size: 10m
       register: files_found
+      delegate_to: "{{ TARGET_HOST }}"
     
     - name: Delete said files
       file:
         path: "{{ item }}"
         state: absent
       loop: files_found.files
+      delegate_to: "{{ TARGET_HOST }}"
