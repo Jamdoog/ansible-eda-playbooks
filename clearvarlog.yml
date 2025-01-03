@@ -10,7 +10,7 @@
         patterns: "*.tar.gz,*.old"
         size: 10m
       register: files_found
-      delegate_to: "{{ ansible_eda.event.payload.data.series[0].tags.host }}"
+      delegate_to: "{{ ansible_eda.event.payload.data.series[0].tags.host | trim }}"
 
     - name: Show files
       debug:
@@ -21,4 +21,4 @@
         path: "{{ item }}"
         state: absent
       loop: "{{ files_found.files | map(attribute='path') | list }}"
-      delegate_to: "{{ ansible_eda.event.payload.data.series[0].tags.host }}"
+      delegate_to: "{{ ansible_eda.event.payload.data.series[0].tags.host | trim }}"
