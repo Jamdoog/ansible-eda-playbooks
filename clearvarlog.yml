@@ -14,11 +14,11 @@
 
     - name: Show files
       debug:
-        var: files_found.files.path
+        var: files_found.files
     
     - name: Delete said files
       file:
         path: "{{ item }}"
         state: absent
-      loop: "{{ files_found.files.path }}"
+      loop: "{{ files_found.files | map(attribute='path') | list }}"
       delegate_to: "{{ TARGET_HOST }}"
