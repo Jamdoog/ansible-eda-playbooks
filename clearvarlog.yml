@@ -1,0 +1,18 @@
+---
+- name: Clear /var/log data
+  hosts: all
+  become: true
+  tasks:
+    - name: Find all files that are compressed over 7 days
+      find:
+        paths: /var/log
+        recurse: true
+        patterns: "*.tar.gz,*.old"
+        size: 10m
+      register: files_found
+    
+    - name: Delete said files
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop: files_found.files

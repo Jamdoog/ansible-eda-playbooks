@@ -1,14 +1,17 @@
 ---
-- name: Clear up disk space in /var/log
+- name: Disk remediation
   hosts: all
   sources:
     - ansible.eda.webhook:
         host: 0.0.0.0
         port: 5000
   rules:
-    - name: Clear space
+    - name: Clear space in /var/log
       condition: event.payload.data.series[0].tags.path == "/var/log"
       action:
-        print_event:
-          pretty: true
+        run_job_template:
+          name: Clear /var/log
+          organization: JamesGravelines
+          job_args:
+            TARGET_HOST: "{{ event.payload.data.series[0].tags.host }}"
           
